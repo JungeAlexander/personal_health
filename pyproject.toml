@@ -8,6 +8,7 @@ license = "APACHE LICENSE, VERSION 2.0"
 [tool.poetry.dependencies]
 python = "^3.10"
 requests = "^2.28.0"
+python-dotenv = "^0.20.0"
 
 [tool.poetry.dev-dependencies]
 ipykernel = "^6.15.0"
