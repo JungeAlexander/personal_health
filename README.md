@@ -2,11 +2,11 @@
 
 Read more about this project [here](https://www.alexanderjunge.net/blog/oura-year-on-year/).
 
+**Note** that this is still WIP 🚧 and thus only sparsely documented. Please open an issue or discussion here.
+
 Right now, the code hear can create plots like this based on data from an Oura ring:
 
-![image](https://user-images.githubusercontent.com/6056731/183278726-b60a400c-2d2c-43d0-bfec-ac089e3c87b1.png)
-
-**Note** that this is still WIP 🚧 and thus only sparsely documented. Please open an issue or discussion here.
+<img src="https://user-images.githubusercontent.com/6056731/183278726-b60a400c-2d2c-43d0-bfec-ac089e3c87b1.png" width="400" />
 
 ## Setup
 
