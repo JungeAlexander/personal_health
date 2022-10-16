@@ -14,6 +14,8 @@ bokeh = "^2.4.3"
 panel = "^0.13.1"
 jupyter-bokeh = "^3.0.4"
 qself = "^0.0.3"
+streamlit = "^1.13.0"
+altair = "^4.2.0"
 
 [tool.poetry.dev-dependencies]
 ipykernel = "^6.15.0"
