@@ -55,6 +55,7 @@ day_range = st.slider("Days compared", min_value=0, max_value=30, value=6)
 
 step_df = get_step_df(years_ago, day_range)
 
+# FIXME: empty graph for one data point - add marker?
 step_chart = (
     alt.Chart(step_df)
     .mark_line()
