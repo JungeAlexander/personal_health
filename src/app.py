@@ -1,18 +1,51 @@
+import os
+from datetime import date, datetime, timedelta
+
 import altair as alt
+from dotenv import load_dotenv
 import pandas as pd
 import streamlit as st
+from qself.oura import OuraAPIClient
+
+load_dotenv()
+client = OuraAPIClient(os.environ["OURA_PERSONAL_ACCESS_TOKEN"])
 
 
-# TODO cache this with st.cache and lru cache within same day?
-def get_step_df(years_ago, day_range) -> pd.DataFrame:
-    df = pd.DataFrame(
+# TODO cache this with st.cache and/or lru cache within same day?
+def get_step_df(years_ago: int, day_range: int) -> pd.DataFrame:
+    current_end = date.today()
+    current_start = current_end - timedelta(days=day_range)
+    prev_end = current_end - timedelta(days=365 * years_ago)  # TODO quick and dirty
+    prev_start = prev_end - timedelta(days=day_range)
+    current_da = client(
+        "daily_activity",
+        current_start.isoformat(),
+        (current_end + timedelta(days=1)).isoformat(),
+    )
+    prev_da = client(
+        "daily_activity",
+        prev_start.isoformat(),
+        (prev_end + timedelta(days=1)).isoformat(),
+    )
+    days = list(range(-day_range, 1)) * 2
+    steps = []
+    years = []
+    timestamps = []
+    for data, year in ((current_da, "current"), (prev_da, "previous")):
+        for d in data["data"]:
+            timestamp = d["timestamp"]
+            dt = datetime.fromisoformat(timestamp)
+            steps.append(d["steps"])
+            years.append(str(dt.year))
+            timestamps.append(timestamp)
+    return pd.DataFrame(
         {
-            "day": list(range(-day_range, 1)) * 2,
-            "steps": [10000] * (day_range + 1) + [9000] * (day_range + 1),
-            "year": ["current"] * (day_range + 1) + ["previous"] * (day_range + 1),
+            "day": days,
+            "steps": steps,
+            "year": years,
+            "timestamp": timestamps,
         }
     )
-    return df
 
 
 st.title("Oura review")
