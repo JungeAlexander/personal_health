@@ -21,6 +21,13 @@ OURA_PERSONAL_ACCESS_TOKEN=ABCDEFGHIJKLMNOPQRSTUVWXYZ
 
 ### Development setup
 
+To install dependencies, run:
+
+```
+poetry install --no-root
+pip install lightning==1.8.3.post1 torch==1.13.0
+```
+
 This project uses [pre-commit](https://pre-commit.com/) which, once you have it [installed](https://pre-commit.com/#install),
 can be configured as follows:
 
