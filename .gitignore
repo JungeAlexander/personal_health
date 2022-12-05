@@ -2,3 +2,4 @@
 
 .vscode/
 data/*.json.gz
+notebooks/model.pt
